@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/input_screen.dart';
 
 void main() {
   runApp(const JobRecommendationApp());
@@ -11,29 +12,11 @@ class JobRecommendationApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Job Recommendation Bot',
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primarySwatch: Colors.blue,
         useMaterial3: true,
-        colorSchemeSeed: Colors.blue,
-        brightness: Brightness.light,
       ),
-      home: const HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Job Recommendation Bot'),
-      ),
-      body: const Center(
-        child: Text('Welcome to Job Recommendation Bot'),
-      ),
+      home: const SkillInputScreen(),
     );
   }
 }
