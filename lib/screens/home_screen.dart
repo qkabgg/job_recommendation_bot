@@ -52,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
       if (!mounted) return;
 
-      // Show results in bottom sheet
       await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
@@ -62,16 +61,15 @@ class _HomeScreenState extends State<HomeScreen> {
           minChildSize: 0.5,
           maxChildSize: 0.9,
           builder: (_, controller) => Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            decoration: BoxDecoration(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Column(
               children: [
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: const BoxDecoration(
-                    color: Colors.white,
                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                   ),
                   child: Column(
