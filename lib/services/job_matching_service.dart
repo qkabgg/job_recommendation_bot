@@ -1,25 +1,25 @@
 import '../models/job_recommendation.dart';
 
 class JobMatchingService {
-  // This is a basic implementation. We'll enhance it later with better matching logic
   Future<List<JobRecommendation>> findMatchingJobs(List<String> skills) async {
-    // Simulate processing delay
     await Future.delayed(const Duration(seconds: 1));
 
-    // Mock job database (to be replaced with actual data)
     final jobs = [
       {
         'title': 'Data Analyst',
+        'company': 'DataCorp',  // Added company
         'requiredSkills': ['python', 'excel', 'data'],
         'description': 'Analyze data and create reports',
       },
       {
         'title': 'Junior Developer',
+        'company': 'TechCo',    // Added company
         'requiredSkills': ['python', 'java', 'javascript'],
         'description': 'Develop and maintain applications',
       },
       {
         'title': 'Customer Support Representative',
+        'company': 'SupportInc', // Added company
         'requiredSkills': ['customer', 'service', 'excel'],
         'description': 'Handle customer inquiries and provide support',
       },
@@ -28,15 +28,19 @@ class JobMatchingService {
     final recommendations = <JobRecommendation>[];
 
     for (final job in jobs) {
-      final requiredSkills = job['requiredSkills'] as List<String>;
+      final requiredSkills = List<String>.from(job['requiredSkills'] as List);
       final matchingSkills = skills.where((skill) => 
         requiredSkills.contains(skill)).length;
       
       if (matchingSkills > 0) {
+        final matchScore = matchingSkills.toDouble();
         final matchPercentage = matchingSkills / requiredSkills.length;
         recommendations.add(
           JobRecommendation(
             title: job['title'] as String,
+            company: job['company'] as String,           // Added this
+            requiredSkills: requiredSkills,             // Added this
+            matchScore: matchScore,                     // Added this
             matchPercentage: matchPercentage,
             description: job['description'] as String,
           ),
@@ -44,7 +48,6 @@ class JobMatchingService {
       }
     }
 
-    // Sort by match percentage descending
     recommendations.sort((a, b) => 
       b.matchPercentage.compareTo(a.matchPercentage));
 
