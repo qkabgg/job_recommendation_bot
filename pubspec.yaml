@@ -1,7 +1,6 @@
 name: job_recommendation_bot
-description: A job recommendation bot using NLP
+description: A job recommendation app using NLP.
 publish_to: 'none'
-
 version: 1.0.0+1
 
 environment:
@@ -11,8 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  provider: ^6.0.0
-  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

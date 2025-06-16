@@ -6,22 +6,22 @@ class JobMatchingService {
 
     final jobs = [
       {
-        'title': 'Data Analyst',
-        'company': 'DataCorp',  // Added company
-        'requiredSkills': ['python', 'excel', 'data'],
-        'description': 'Analyze data and create reports',
+        'title': 'Senior Flutter Developer',
+        'company': 'TechCorp',
+        'description': 'Looking for an experienced Flutter developer to join our team.',
+        'requiredSkills': ['Flutter', 'Dart', 'REST API', 'Git'],
       },
       {
-        'title': 'Junior Developer',
-        'company': 'TechCo',    // Added company
-        'requiredSkills': ['python', 'java', 'javascript'],
-        'description': 'Develop and maintain applications',
+        'title': 'Full Stack Developer',
+        'company': 'InnovateTech',
+        'description': 'Seeking a Full Stack Developer with experience in React and Node.js.',
+        'requiredSkills': ['React', 'Node.js', 'JavaScript', 'AWS'],
       },
       {
-        'title': 'Customer Support Representative',
-        'company': 'SupportInc', // Added company
-        'requiredSkills': ['customer', 'service', 'excel'],
-        'description': 'Handle customer inquiries and provide support',
+        'title': 'Data Scientist',
+        'company': 'DataCo Analytics',
+        'description': 'Join our data science team to work on exciting ML projects.',
+        'requiredSkills': ['Python', 'Machine Learning', 'SQL', 'Statistics'],
       },
     ];
 
@@ -29,18 +29,16 @@ class JobMatchingService {
 
     for (final job in jobs) {
       final requiredSkills = List<String>.from(job['requiredSkills'] as List);
-      final matchingSkills = skills.where((skill) => 
-        requiredSkills.contains(skill)).length;
+      final matchingSkills = skills.where((skill) =>
+        requiredSkills.any((req) => req.toLowerCase().contains(skill.toLowerCase()))).length;
       
       if (matchingSkills > 0) {
-        final matchScore = matchingSkills.toDouble();
         final matchPercentage = matchingSkills / requiredSkills.length;
         recommendations.add(
           JobRecommendation(
             title: job['title'] as String,
-            company: job['company'] as String,           // Added this
-            requiredSkills: requiredSkills,             // Added this
-            matchScore: matchScore,                     // Added this
+            company: job['company'] as String,
+            requiredSkills: requiredSkills,
             matchPercentage: matchPercentage,
             description: job['description'] as String,
           ),
@@ -48,9 +46,7 @@ class JobMatchingService {
       }
     }
 
-    recommendations.sort((a, b) => 
-      b.matchPercentage.compareTo(a.matchPercentage));
-
+    recommendations.sort((a, b) => b.matchPercentage.compareTo(a.matchPercentage));
     return recommendations;
   }
 }

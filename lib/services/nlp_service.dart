@@ -14,18 +14,7 @@ class NLPService {
   bool _isSkill(String word) {
     // Basic skill dictionary (to be expanded)
     final skillsList = [
-      'python',
-      'java',
-      'javascript',
-      'flutter',
-      'react',
-      'angular',
-      'data',
-      'entry',
-      'excel',
-      'word',
-      'customer',
-      'service',
+      'python','java','javascript','flutter','react','angular','data','entry','excel','word','customer','service',
     ];
 
     return skillsList.contains(word);
